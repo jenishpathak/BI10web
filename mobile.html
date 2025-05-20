@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Medical Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #111827;
+            color: #e5e7eb;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-control, .form-select {
+            font-size: 16px; /* Prevents iOS zoom on focus */
+        }
+        .btn {
+            padding: 12px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .success-message {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .pay-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .pay-buttons .btn {
+            width: 100%;
+        }
+        .pay-buttons img {
+            height: 24px;
+            margin-right: 8px;
+        }
+        /* Hide help and language sections on mobile */
+        .help-section, .language-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="form-container">
+        <h2 class="mb-4">Create your MedCare+ ID</h2>
+        <form id="medical-form">
+            <!-- Personal Information -->
+            <div class="mb-3">
+                <label for="full-name" class="form-label">Full Name</label>
+                <input type="text" id="full-name" class="form-control" placeholder="Enter your full name" required>
+            </div>
+            <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" id="dob" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select id="gender" class="form-select" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea id="address" class="form-control" rows="2" placeholder="Enter your address" required></textarea>
+            </div>
+
+            <!-- Medical History -->
+            <div class="mb-3">
+                <label for="allergies" class="form-label">Allergies (if any)</label>
+                <textarea id="allergies" class="form-control" rows="3" placeholder="Enter any allergies"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="current-medications" class="form-label">Current Medications</label>
+                <textarea id="current-medications" class="form-control" rows="3" placeholder="Enter any current medications"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="existing-conditions" class="form-label">Existing Medical Conditions</label>
+                <textarea id="existing-conditions" class="form-control" rows="3" placeholder="Enter existing medical conditions"></textarea>
+            </div>
+
+            <!-- Emergency Contact -->
+            <div class="mb-3">
+                <label for="emergency-contact" class="form-label">Emergency Contact Name</label>
+                <input type="text" id="emergency-contact" class="form-control" placeholder="Enter emergency contact name" required>
+            </div>
+            <div class="mb-3">
+                <label for="emergency-phone" class="form-label">Emergency Contact Phone</label>
+                <input type="tel" id="emergency-phone" class="form-control" placeholder="Enter emergency contact phone" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Submit</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const medicalForm = document.getElementById('medical-form');
+        const formContainer = document.getElementById('form-container');
+
+        // Handle form submission
+        medicalForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Replace content of form container with success message
+            formContainer.innerHTML = `
+                <div class="success-message">
+                    Your MedCare+ ID has now been created!<br>
+                    Please visit a kiosk machine at your local hospital or click the button below to add it to your digital wallet.
+                </div>
+                <div class="pay-buttons">
+                    <button class="btn btn-outline-primary">
+                        <img src="Apple_Pay_Mark_RGB_041619.svg" alt="Apple Pay Icon">
+                        Add to Apple Pay
+                    </button>
+                    <button class="btn btn-outline-primary">
+                        <img src="https://developers.google.com/static/pay/api/images/brand-guidelines/plain-button-white-pill-shape.png" alt="Google Pay Icon">
+                        Add to Google Pay
+                    </button>
+                </div>
+            `;
+        });
+    </script>
+</body>
